@@ -8,8 +8,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'Customdialog.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key, required this.login});
-  final FirebaseAuth login;
+  const RegisterPage({
+    super.key,
+  });
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -17,10 +18,20 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final formkey = GlobalKey<FormState>();
-  late String _email;
-  late String _password;
-  late String _name;
-  final List<String> _bloodGroup = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', "AB+", "AB-"];
+  late String _email = "";
+  late String _password = "";
+  late String _name = "";
+  late FirebaseAuth login;
+  final List<String> _bloodGroup = [
+    'A+',
+    'A-',
+    'B+',
+    'B-',
+    'O+',
+    'O-',
+    "AB+",
+    "AB-"
+  ];
   String _selected = '';
 
   bool _categorySelected = false;
@@ -60,7 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
       try {
         CustomDialogs.progressDialog(
             context: context, message: 'Registration under process');
-        User user = (await widget.login.createUserWithEmailAndPassword(
+        User user = (await login.createUserWithEmailAndPassword(
                 email: _email, password: _password))
             .user!;
         Navigator.pop(context);
@@ -73,8 +84,8 @@ class _RegisterPageState extends State<RegisterPage> {
         };
         addData(UserDetails).then((result) {
           print("User Added");
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => const HomePage()));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const HomePage()));
         }).catchError((e) {
           print(e);
         });
@@ -116,29 +127,32 @@ class _RegisterPageState extends State<RegisterPage> {
           title: const Text(
             'Register',
             style: TextStyle(
-                fontSize: 60, fontFamily: "Raleway", color: Colors.white),
+                fontSize: 40, fontFamily: "Raleway", color: Colors.white),
           ),
         ),
         body: ClipRRect(
           borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(35.0), topRight: Radius.circular(35)),
+              topLeft: Radius.circular(35.0),
+              topRight: Radius.circular(35),
+              bottomLeft: Radius.circular(35),
+              bottomRight: Radius.circular(35)),
           child: Container(
             width: double.infinity,
             height: MediaQuery.of(context).size.height -
-                MediaQuery.of(context).size.height / 2.5,
+                MediaQuery.of(context).size.height / 6,
             color: Colors.white,
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(50),
                     child: Form(
                         key: formkey,
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(18),
+                              padding: const EdgeInsets.all(20),
                               child: TextFormField(
                                 decoration: const InputDecoration(
                                   hintText: 'name',

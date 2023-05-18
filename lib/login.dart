@@ -7,8 +7,9 @@ import 'package:flutter/services.dart';
 import 'Customdialog.dart';
 
 class Loginpage extends StatefulWidget {
-  const Loginpage({super.key, this.login});
-  final FirebaseAuth? login;
+  const Loginpage({
+    super.key,
+  });
 
   @override
   State<Loginpage> createState() => _LoginpageState();
@@ -18,6 +19,7 @@ class _LoginpageState extends State<Loginpage> {
   final _formkey = GlobalKey<FormState>();
   late String _email;
   late String _password;
+  late FirebaseAuth auth;
   bool validate_save() {
     final form = _formkey.currentState;
     if (form!.validate()) {
@@ -31,8 +33,8 @@ class _LoginpageState extends State<Loginpage> {
     if (validate_save()) {
       try {
         CustomDialogs.progressDialog(context: context, message: 'Signing In');
-        User user = (await widget.login!
-                .signInWithEmailAndPassword(email: _email, password: _password))
+        User user = (await auth.signInWithEmailAndPassword(
+                email: _email, password: _password))
             .user!;
         Navigator.pop(context);
         print('Signed in: ${user.uid}');
@@ -80,7 +82,7 @@ class _LoginpageState extends State<Loginpage> {
                   "Blood Alert",
                   style: TextStyle(
                       fontFamily: "Raleway",
-                      fontSize: 100,
+                      fontSize: 60,
                       color: Colors.white70),
                 ),
               ),
@@ -160,9 +162,7 @@ class _LoginpageState extends State<Loginpage> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      RegisterPage(
-                                                        login: widget.login!,
-                                                      )));
+                                                      RegisterPage()));
                                         },
                                         child: const Text(
                                           "Click Here",

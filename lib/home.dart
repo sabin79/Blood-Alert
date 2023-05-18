@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   User? currentUser;
-  String? _name, _bloodgroup, _email;
+  String? _name = '', _bloodgroup = '', _email = '';
   late Widget _child;
 
   Future<void> _fetchUserInfo() async {
@@ -140,8 +140,10 @@ class _HomePageState extends State<HomePage> {
                 color: Color.fromARGB(1000, 221, 46, 68),
               ),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const RequestBlood()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RequestBlood()));
               },
             ),
             ListTile(
@@ -163,11 +165,8 @@ class _HomePageState extends State<HomePage> {
               ),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            Loginpage(login: FirebaseAuth.instance)));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => Loginpage()));
               },
             )
           ],
