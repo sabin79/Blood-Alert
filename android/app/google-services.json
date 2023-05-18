@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "378145527823",
+    "project_id": "bloodalert-75ab0",
+    "storage_bucket": "bloodalert-75ab0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378145527823:android:9ec7b6b9bb6225f52deb7a",
+        "android_client_info": {
+          "package_name": "com.example.boodbank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378145527823-4gnh6q216f9tflpqlc8l1n7f0j95pt2s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATtcR1QJVE-nT_D1QUOzmhCQBlcsGU32E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378145527823-4gnh6q216f9tflpqlc8l1n7f0j95pt2s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
