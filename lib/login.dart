@@ -4,12 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/services.dart';
-
 import 'Customdialog.dart';
 
 class Loginpage extends StatefulWidget {
-  const Loginpage({super.key, required this.login});
-  final FirebaseAuth login;
+  const Loginpage({super.key, this.login});
+  final FirebaseAuth? login;
 
   @override
   State<Loginpage> createState() => _LoginpageState();
@@ -32,7 +31,7 @@ class _LoginpageState extends State<Loginpage> {
     if (validate_save()) {
       try {
         CustomDialogs.progressDialog(context: context, message: 'Signing In');
-        User user = (await widget.login
+        User user = (await widget.login!
                 .signInWithEmailAndPassword(email: _email, password: _password))
             .user!;
         Navigator.pop(context);
@@ -162,7 +161,7 @@ class _LoginpageState extends State<Loginpage> {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       RegisterPage(
-                                                        login: widget.login,
+                                                        login: widget.login!,
                                                       )));
                                         },
                                         child: const Text(

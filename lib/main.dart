@@ -3,6 +3,8 @@ import 'package:boodbank/home.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'login.dart';
+
 //
 
 void main() async {
@@ -30,8 +32,8 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.red,
       ),
       home: AnimatedSplashScreen(
-        splash: "logo.png",
-        nextScreen: const HomePage(),
+        splash: "images/logo.png",
+        nextScreen: const Loginpage(),
       ),
     );
   }
