@@ -16,11 +16,11 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
-  final formkey = GlobalKey<FormState>();
+  final _formkey = GlobalKey<FormState>();
   late String _email;
   late String _password;
   bool validate_save() {
-    final form = formkey.currentState;
+    final form = _formkey.currentState;
     if (form!.validate()) {
       form.save();
       return true;
@@ -28,7 +28,7 @@ class _LoginpageState extends State<Loginpage> {
     return false;
   }
 
-  void validate_submit() async {
+  void _submit() async {
     if (validate_save()) {
       try {
         CustomDialogs.progressDialog(context: context, message: 'Signing In');
@@ -49,7 +49,7 @@ class _LoginpageState extends State<Loginpage> {
                   ElevatedButton(
                     child: const Text('OK'),
                     onPressed: () {
-                      formkey.currentState?.reset();
+                      _formkey.currentState?.reset();
                       Navigator.pop(context);
                       Navigator.pop(context);
                     },
@@ -103,7 +103,7 @@ class _LoginpageState extends State<Loginpage> {
                       Padding(
                         padding: const EdgeInsets.all(12),
                         child: Form(
-                            key: formkey,
+                            key: _formkey,
                             child: Column(
                               children: [
                                 Padding(
@@ -117,6 +117,7 @@ class _LoginpageState extends State<Loginpage> {
                                             Color.fromARGB(1000, 221, 46, 68),
                                       ),
                                     ),
+                                    obscureText: false,
                                     validator: (value) => value!.isEmpty
                                         ? "Email ID  can't be empty"
                                         : null,
@@ -145,7 +146,7 @@ class _LoginpageState extends State<Loginpage> {
                                   height: 30.0,
                                 ),
                                 ElevatedButton(
-                                  onPressed: validate_submit,
+                                  onPressed: _submit,
                                   child: const Text("Login"),
                                 ),
                                 Padding(
