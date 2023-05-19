@@ -149,8 +149,8 @@ class _RequestBloodState extends State<RequestBlood> {
         title: const Text(
           "Request Blood",
           style: TextStyle(
-            fontSize: 50.0,
-            fontFamily: "SouthernAire",
+            fontSize: 40.0,
+            fontFamily: "Raleway",
             color: Colors.white,
           ),
         ),
@@ -295,7 +295,7 @@ class _RequestBloodState extends State<RequestBlood> {
                             print(e);
                           });
                         },
-                        child: const Text(""),
+                        child: const Text("Done"),
                       ),
                     ],
                   ),

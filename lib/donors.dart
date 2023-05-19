@@ -30,7 +30,7 @@ class _DonorPageState extends State<DonorPage> {
       if (querySnapshot.docs.isNotEmpty) {
         for (int i = 0; i < querySnapshot.docs.length; ++i) {
           donors.add(querySnapshot.docs[i].data()['name']);
-          BloodGroup.add(querySnapshot.docs[i].data()['bloodgroup']);
+          BloodGroup.add(querySnapshot.docs[i].data()['bloodgroup'] ?? "");
         }
       }
     });

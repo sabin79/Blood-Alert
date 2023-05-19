@@ -199,6 +199,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     color: Colors.red,
                                   ),
                                 ),
+                                obscureText: true,
                                 validator: (value) => value!.isEmpty
                                     ? "Password  can't be empty"
                                     : null,

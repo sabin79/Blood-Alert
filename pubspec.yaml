@@ -51,7 +51,10 @@ dependencies:
   animated_splash_screen: ^1.3.0
   get: ^4.6.5
   geocoding: 
-  activout_firebase_options_selector: ^1.0.0
+  permission_handler: ^10.2.0
+  
+  
+
   
 
 

@@ -9,6 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:boodbank/Customdialog.dart';
 import 'package:boodbank/RippleIndicator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MapView extends StatefulWidget {
   const MapView({Key? key}) : super(key: key);
@@ -73,7 +74,7 @@ class _MapViewState extends State<MapView> {
     final Marker marker = Marker(
         markerId: const MarkerId('home'),
         position:
-            LatLng(request['location'].lalitude, request['location'].longitude),
+            LatLng(request['location'].latitude, request['location'].longitude),
         onTap: () async {
           CustomDialogs.progressDialog(context: context, message: 'fetching');
           await _fetchRequestName(requestId);
@@ -129,8 +130,8 @@ class _MapViewState extends State<MapView> {
                               ),
                               Text(
                                 "Due Date:" + request['dueDate'],
-                                style:
-                                    const TextStyle(fontSize: 14, color: Colors.red),
+                                style: const TextStyle(
+                                    fontSize: 14, color: Colors.red),
                               ),
                             ],
                           ),
@@ -174,18 +175,20 @@ class _MapViewState extends State<MapView> {
   }
 
   void getCurrentLocation() async {
-    Position? res = await Geolocator.getCurrentPosition();
-    print(Position);
-    setState(() {
-      position = res;
-      _child = mapWidget();
-    });
+    var status = await Permission.location.request();
+    if (status.isGranted) {
+      Position? res = await Geolocator.getCurrentPosition();
+      setState(() {
+        position = res;
+        _child = mapWidget();
+      });
 
-    Position? currentPosition = position;
-    if (currentPosition != null) {
-      print(currentPosition.latitude);
-      print(currentPosition.longitude);
-    }
+      Position? currentPosition = position;
+      if (currentPosition != null) {
+        print(currentPosition.latitude);
+        print(currentPosition.longitude);
+      }
+    } else {}
   }
 
   void getIcon() async {

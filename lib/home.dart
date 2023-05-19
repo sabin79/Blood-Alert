@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         .doc(currentUser.uid)
         .get();
 
-    userInfo = snapshot.data as Map<String, dynamic>;
+    userInfo = snapshot.data() as Map<String, dynamic>;
 
     setState(() {
       _name = userInfo['name'];
@@ -48,6 +48,8 @@ class _HomePageState extends State<HomePage> {
         currentUser = user;
       });
     }
+
+    // print me current user
   }
 
   @override
@@ -98,11 +100,14 @@ class _HomePageState extends State<HomePage> {
                   fontSize: 22.0,
                 ),
               ),
-              accountEmail: Text(currentUser == null ? "" : _email!),
+              accountEmail: Text(
+                currentUser == null ? "" : _email ?? "",
+                style: TextStyle(fontSize: 22),
+              ),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
                 child: Text(
-                  currentUser == null ? "" : _bloodgroup!,
+                  currentUser == null ? "" : _bloodgroup ?? "",
                   style: const TextStyle(
                     fontSize: 30.0,
                     color: Colors.black54,
@@ -166,7 +171,7 @@ class _HomePageState extends State<HomePage> {
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
                 Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => Loginpage()));
+                    MaterialPageRoute(builder: (context) => const Loginpage()));
               },
             )
           ],

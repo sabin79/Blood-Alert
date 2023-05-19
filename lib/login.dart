@@ -20,6 +20,7 @@ class _LoginpageState extends State<Loginpage> {
   late String _email;
   late String _password;
   late FirebaseAuth auth;
+
   bool validate_save() {
     final form = _formkey.currentState;
     if (form!.validate()) {
@@ -29,10 +30,20 @@ class _LoginpageState extends State<Loginpage> {
     return false;
   }
 
+  @override
+  void initState() {
+    super.initState();
+    auth = FirebaseAuth.instance;
+  }
+
   void _submit() async {
     if (validate_save()) {
       try {
         CustomDialogs.progressDialog(context: context, message: 'Signing In');
+        print("============================");
+        print(auth);
+        print("============================");
+
         User user = (await auth.signInWithEmailAndPassword(
                 email: _email, password: _password))
             .user!;
@@ -162,7 +173,7 @@ class _LoginpageState extends State<Loginpage> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      RegisterPage()));
+                                                      const RegisterPage()));
                                         },
                                         child: const Text(
                                           "Click Here",
