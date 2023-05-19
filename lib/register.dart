@@ -43,6 +43,12 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
+  @override
+  void initState() {
+    super.initState();
+    login = FirebaseAuth.instance;
+  }
+
   Future<void> addData(user) async {
     if (isLoggedIn()) {
       FirebaseFirestore.instance
