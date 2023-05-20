@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
       ),
       home: AnimatedSplashScreen(
         splash: "images/logo.png",
-        splashIconSize: 250,
+        splashIconSize: 300,
         nextScreen: const Loginpage(),
         splashTransition: SplashTransition.fadeTransition,
         duration: 1000,

@@ -101,8 +101,8 @@ class _RequestBloodState extends State<RequestBlood> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Success'),
-          content: const Text('Blood Request Submitted'),
+          title: Text('Success'),
+          content: Text('Blood Request Submitted'),
           actions: <Widget>[
             TextButton(
               onPressed: () {

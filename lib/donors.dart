@@ -2,6 +2,8 @@ import 'package:boodbank/waveindicator.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'detail.dart';
+import 'requestblood.dart';
 
 class DonorPage extends StatefulWidget {
   const DonorPage({super.key});
@@ -52,13 +54,14 @@ class _DonorPageState extends State<DonorPage> {
               fontSize: 50, fontFamily: "Raleway", color: Colors.white),
         ),
         leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(
-              FontAwesomeIcons.reply,
-              color: Colors.white,
-            )),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(
+            FontAwesomeIcons.reply,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: ClipRRect(
         borderRadius: const BorderRadius.only(
