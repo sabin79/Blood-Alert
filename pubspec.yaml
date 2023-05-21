@@ -52,6 +52,7 @@ dependencies:
   get: ^4.6.5
   geocoding: 
   permission_handler: ^10.2.0
+  intl: ^0.18.1
   
   
 

@@ -74,7 +74,10 @@ class _IncrementalPageState extends State<IncrementalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Donor-Report'),
+          title: Text(
+            'Donor-Report',
+            style: TextStyle(fontFamily: "Raleway", fontSize: 35),
+          ),
           centerTitle: true,
           leading: IconButton(
             icon: const Icon(

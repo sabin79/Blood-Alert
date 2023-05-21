@@ -37,7 +37,7 @@ class _RequestBloodState extends State<RequestBlood> {
     'O+',
     'O-',
     'AB+',
-    'AB-'
+    'AB-',
   ];
   String _selected = '';
   String? _qty;
@@ -109,8 +109,8 @@ class _RequestBloodState extends State<RequestBlood> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Success'),
-          content: Text('Blood Request Submitted'),
+          title: const Text('Success'),
+          content: const Text('Blood Request Submitted'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -246,7 +246,7 @@ class _RequestBloodState extends State<RequestBlood> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: <Widget>[
+                          children: [
                             IconButton(
                               onPressed: () => _selectDate(context),
                               icon: const Icon(FontAwesomeIcons.calendar),
