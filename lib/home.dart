@@ -198,70 +198,77 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(35),
-          topRight: Radius.circular(35),
-        ),
-        child: Container(
-          height: 800,
-          width: double.infinity,
-          color: Colors.white,
-          //  child: const MapView(),
+      body: SingleChildScrollView(
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(35),
+            topRight: Radius.circular(35),
+          ),
           child: Container(
-            height: double.infinity,
+            height: 800,
             width: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("images/hello.jpg"),
-                fit: BoxFit.cover,
-                alignment: Alignment.topCenter,
+            color: Colors.white,
+            //  child: const MapView(),
+            child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("images/hello.jpg"),
+                  fit: BoxFit.cover,
+                  alignment: Alignment.topCenter,
+                ),
               ),
-            ),
-            child: Column(
-              children: [
-                Padding(
-                    padding: EdgeInsets.only(left: 25, right: 25, bottom: 180)),
-                Container(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => DonorPage()));
-                    },
-                    child: Text(
-                      "Donor",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontFamily: "Raleway"),
+              child: Column(
+                children: [
+                  Padding(
+                      padding:
+                          EdgeInsets.only(left: 25, right: 25, bottom: 180)),
+                  Container(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DonorPage()));
+                      },
+                      child: Text(
+                        "Donor",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontFamily: "Raleway"),
+                      ),
+                      style: ButtonStyle(
+                          minimumSize:
+                              MaterialStateProperty.all(Size(130, 50))),
                     ),
-                    style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(130, 50))),
                   ),
-                ),
-                SizedBox(
-                  height: 200,
-                ),
-                Container(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RequestBlood()));
-                    },
-                    child: Text(
-                      "Request",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontFamily: "Raleway"),
+                  SizedBox(
+                    height: 200,
+                  ),
+                  Container(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => RequestBlood()));
+                      },
+                      child: Text(
+                        "Request",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontFamily: "Raleway"),
+                      ),
+                      style: ButtonStyle(
+                          minimumSize:
+                              MaterialStateProperty.all(Size(130, 50))),
                     ),
-                    style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(130, 50))),
                   ),
-                )
-              ],
+                ],
+              ),
             ),
           ),
         ),
