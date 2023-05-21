@@ -13,8 +13,8 @@ class DonorPage extends StatefulWidget {
 }
 
 class _DonorPageState extends State<DonorPage> {
-  List<String> donors = [];
-  List<String> BloodGroup = [];
+  List<Map<String, dynamic>> donors = [];
+  List<String> bloodGroup = [];
   late Widget _child;
 
   @override
@@ -31,14 +31,31 @@ class _DonorPageState extends State<DonorPage> {
         .then((QuerySnapshot<Map<String, dynamic>> querySnapshot) {
       if (querySnapshot.docs.isNotEmpty) {
         for (int i = 0; i < querySnapshot.docs.length; ++i) {
-          donors.add(querySnapshot.docs[i].data()['name']);
-          BloodGroup.add(querySnapshot.docs[i].data()['bloodgroup'] ?? "");
+          donors.add(querySnapshot.docs[i].data());
         }
+        print(donors);
       }
     });
     setState(() {
       _child = Mywidget();
     });
+  }
+
+  showdialogfunction(String bloodGroup) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Column(
+              children: [
+                Text(
+                  bloodGroup,
+                  style: TextStyle(color: Colors.red),
+                ),
+              ],
+            ),
+          );
+        });
   }
 
   Widget Mywidget() {
@@ -81,11 +98,14 @@ class _DonorPageState extends State<DonorPage> {
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(donors[index]),
+                        Text(donors[index]["name"] ?? ""),
                         Align(
                           alignment: Alignment.centerRight,
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              showdialogfunction(
+                                  donors[index]["Blood Group "] ?? "");
+                            },
                             icon: const Icon(
                               Icons.message,
                               color: Color.fromARGB(1000, 221, 46, 68),
@@ -97,7 +117,7 @@ class _DonorPageState extends State<DonorPage> {
                     leading: CircleAvatar(
                       backgroundColor: const Color.fromARGB(100, 221, 46, 68),
                       child: Text(
-                        BloodGroup[index],
+                        donors[index]["Blood Group"] ?? "",
                         style: const TextStyle(color: Colors.white),
                       ),
                     ),

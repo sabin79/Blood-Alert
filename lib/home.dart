@@ -10,6 +10,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'reporst.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -35,8 +37,8 @@ class _HomePageState extends State<HomePage> {
 
     setState(() {
       _name = userInfo['name'];
-      _email = userInfo['Email'];
-      _bloodgroup = userInfo['Blood-Group'];
+      _email = userInfo['email'];
+      _bloodgroup = userInfo['Blood Group'];
       //  _child = _myWidget();
     });
   }
@@ -97,13 +99,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               accountEmail: Text(
-                currentUser == null ? "" : _email ?? "",
+                currentUser == null ? "" : _email!,
                 style: TextStyle(fontSize: 22),
               ),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
                 child: Text(
-                  currentUser == null ? "" : _bloodgroup ?? "",
+                  currentUser == null ? "" : _bloodgroup!,
                   style: const TextStyle(
                     fontSize: 30.0,
                     color: Colors.black54,
@@ -159,17 +161,28 @@ class _HomePageState extends State<HomePage> {
                         builder: (context) => const RequestBlood()));
               },
             ),
-            // ListTile(
-            //   title: const Text("Campaigns"),
-            //   leading: const Icon(
-            //     FontAwesomeIcons.ribbon,
-            //     color: Color.fromARGB(1000, 221, 46, 68),
-            //   ),
-            //   onTap: () {
-            //     Navigator.push(context,
-            //         MaterialPageRoute(builder: (context) => const CampPage()));
-            //   },
-            // ),
+            ListTile(
+              title: const Text("Donor-Report"),
+              leading: const Icon(
+                Icons.report,
+                color: Color.fromARGB(1000, 221, 46, 68),
+              ),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => IncrementalPage()));
+              },
+            ),
+            ListTile(
+              title: const Text("Campaigns"),
+              leading: const Icon(
+                FontAwesomeIcons.ribbon,
+                color: Color.fromARGB(1000, 221, 46, 68),
+              ),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const CampPage()));
+              },
+            ),
             ListTile(
               title: const Text("Log-Out"),
               leading: const Icon(
