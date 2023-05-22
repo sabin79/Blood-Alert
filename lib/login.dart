@@ -39,7 +39,6 @@ class _LoginpageState extends State<Loginpage> {
   void _submit() async {
     if (validate_save()) {
       try {
-        
         CustomDialogs.progressDialog(context: context, message: 'Signing In');
         print("============================");
         print(auth);
@@ -51,7 +50,11 @@ class _LoginpageState extends State<Loginpage> {
         Navigator.pop(context);
         print('Signed in: ${user.uid}');
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const HomePage()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => HomePage(
+                      user: user,
+                    )));
       } catch (e) {
         print('Errr : $e');
         showDialog(

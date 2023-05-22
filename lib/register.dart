@@ -90,8 +90,12 @@ class _RegisterPageState extends State<RegisterPage> {
         };
         addData(UserDetails).then((result) {
           print("User Added");
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const HomePage()));
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HomePage(
+                        user: user,
+                      )));
         }).catchError((e) {
           print(e);
         });

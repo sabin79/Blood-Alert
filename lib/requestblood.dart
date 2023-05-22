@@ -8,8 +8,10 @@ import 'package:geocoding/geocoding.dart';
 class RequestBlood extends StatefulWidget {
   final double? latitude;
   final double? longitude;
+  final User user;
 
-  const RequestBlood({Key? key, this.latitude, this.longitude})
+  const RequestBlood(
+      {Key? key, this.latitude, this.longitude, required this.user})
       : super(key: key);
 
   double? get _latitude => latitude;
@@ -116,8 +118,12 @@ class _RequestBloodState extends State<RequestBlood> {
               onPressed: () {
                 formkey.currentState?.reset();
                 Navigator.pop(context);
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => const HomePage()));
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HomePage(
+                              user: widget.user,
+                            )));
               },
               child: const Icon(
                 Icons.arrow_forward,

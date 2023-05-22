@@ -9,21 +9,20 @@ import 'Customdialog.dart';
 import 'dart:io';
 
 class CampPage extends StatefulWidget {
-  const CampPage({super.key});
+  final User user;
+  const CampPage({super.key, required this.user});
 
   @override
   State<CampPage> createState() => _CampPageState();
 }
 
 class _CampPageState extends State<CampPage> {
-  User? Currentuser;
   final formkey = GlobalKey<FormState>();
   String? _text, _name;
 
   @override
   void initState() {
     super.initState();
-    _loadCurrentUser();
   }
 
   bool isLoggedIn() {
@@ -47,15 +46,6 @@ class _CampPageState extends State<CampPage> {
     }
   }
 
-  Future<void> _loadCurrentUser() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      setState(() {
-        Currentuser = user;
-      });
-    }
-  }
-
   Future<bool> dialogTrigger(
       BuildContext context, GlobalKey<FormState> formKey) async {
     showDialog(
@@ -70,8 +60,12 @@ class _CampPageState extends State<CampPage> {
               onPressed: () {
                 formkey.currentState!.reset();
                 Navigator.pop(context);
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => const CampPage()));
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CampPage(
+                              user: widget.user,
+                            )));
               },
               child: const Icon(
                 Icons.arrow_forward,
@@ -109,10 +103,6 @@ class _CampPageState extends State<CampPage> {
   Future<String> uploadImage() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      AuthCredential credential = EmailAuthProvider.credential(
-          email: user.email!, password: user.providerData[0].providerId);
-
-      await user.reauthenticateWithCredential(credential);
       if (_image != null) {
         File imageFile = File(_image!.path);
         firebase_storage.Reference storageReference = firebase_storage
@@ -260,7 +250,7 @@ class _CampPageState extends State<CampPage> {
                               var url = await uploadImage();
                               Navigator.of(context).pop();
                               final Map<String, dynamic> camaignDetails = {
-                                'uid': Currentuser!.uid,
+                                'uid': widget.user.uid,
                                 'content': _text,
                                 'image': url,
                                 'name': _name,

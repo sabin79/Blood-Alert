@@ -2,7 +2,8 @@ import 'package:boodbank/waveindicator.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'requestblood.dart';
 
 class DonorPage extends StatefulWidget {
@@ -122,7 +123,9 @@ class _DonorPageState extends State<DonorPage> {
                       ),
                     ),
                     trailing: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        launch('tel:  9861393634');
+                      },
                       icon: const Icon(Icons.phone),
                       color: const Color.fromARGB(1000, 221, 46, 68),
                     ),

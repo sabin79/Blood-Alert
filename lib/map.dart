@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 import 'package:boodbank/requestblood.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart' as urlLauncher;
@@ -12,8 +13,8 @@ import 'package:boodbank/RippleIndicator.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class MapView extends StatefulWidget {
-  const MapView({Key? key}) : super(key: key);
-
+  const MapView({Key? key, required this.user}) : super(key: key);
+  final User user;
   @override
   State<MapView> createState() => _MapViewState();
 }
@@ -233,7 +234,7 @@ class _MapViewState extends State<MapView> {
 
   Widget mapWidget() {
     return Stack(
-      children: <Widget>[
+      children: [
         GoogleMap(
           mapType: MapType.normal,
           initialCameraPosition: CameraPosition(
@@ -260,6 +261,7 @@ class _MapViewState extends State<MapView> {
                     builder: (context) => RequestBlood(
                       latitude: position?.latitude,
                       longitude: position?.longitude,
+                      user: widget.user,
                     ),
                   ),
                 );

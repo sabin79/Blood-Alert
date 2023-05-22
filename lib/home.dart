@@ -13,7 +13,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'reporst.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final User user;
+  const HomePage({super.key, required this.user});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -121,8 +122,12 @@ class _HomePageState extends State<HomePage> {
                 color: Color.fromARGB(1000, 221, 46, 68),
               ),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const HomePage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HomePage(
+                              user: widget.user,
+                            )));
               },
             ),
             ListTile(
@@ -133,8 +138,12 @@ class _HomePageState extends State<HomePage> {
               ),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => const MapView()));
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MapView(
+                              user: widget.user,
+                            )));
               },
             ),
             ListTile(
@@ -158,7 +167,9 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const RequestBlood()));
+                        builder: (context) => RequestBlood(
+                              user: widget.user,
+                            )));
               },
             ),
             ListTile(
@@ -179,8 +190,12 @@ class _HomePageState extends State<HomePage> {
                 color: Color.fromARGB(1000, 221, 46, 68),
               ),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const CampPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CampPage(
+                              user: widget.user,
+                            )));
               },
             ),
             ListTile(
@@ -253,7 +268,9 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => RequestBlood()));
+                                builder: (context) => RequestBlood(
+                                      user: widget.user,
+                                    )));
                       },
                       child: Text(
                         "Request",
